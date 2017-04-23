@@ -61,6 +61,75 @@ sample_users = [
   }
 ]
 
+sample_campaigns = [
+  {
+    id: 123,
+    name: "Double For May",
+  },
+  {
+    id: 234,
+    name: "Give the gift of freedom this Christmas",
+  },
+]
+
+sample_media = [
+  {
+    "id": 123,
+    "type": "video",
+    "date": "2017-03-10T00:00:00+0000",
+    "campaign_id": 123,
+    "medium": 1,
+    "title": {
+      "en_US": "Title",
+      "en_AU": "Title",
+      "en_NZ": "Title",
+    },
+    "importance": 6,
+    "share_count": 27,
+    "tags": [
+      "rescue",
+      "aftercare",
+    ],
+    "url": "https://www.youtube.com/embed/YV5KAbV34NU",
+    "caption": {
+      "en_US": "Caption",
+      "en_AU": "Caption",
+      "en_NZ": "Caption",
+    },
+    "duration": 124,
+  },
+  {
+    "id": 234,
+    "type": "html",
+    "date": "2017-03-10T00:00:00+0000",
+    "campaign_id": 234,
+    "medium": 1,
+    "title": {
+      "en_US": "Title",
+      "en_AU": "Title",
+      "en_NZ": "Title",
+    },
+    "importance": 6,
+    "share_count": 27,
+    "tags": [
+      "rescue",
+      "aftercare",
+    ],
+    "url": "https://www.youtube.com/embed/YV5KAbV34NU",
+    "caption": {
+      "en_US": "Caption",
+      "en_AU": "Caption",
+      "en_NZ": "Caption",
+    },
+    "duration": 124,
+    "body": {
+      "en_US": "Hello!",
+      "en_AU": "Gidday!",
+      "en_NZ": "Kia ora!",
+    },
+  },
+]
+
 get '/funding-nations/' do
   content_type :json
   sample_funding_nations.to_json
@@ -73,7 +142,7 @@ end
 
 post '/users/' do
   content_type :json
-  sample_users[0].to_json
+  sample_users.first.to_json
 end
 
 put '/users/:id' do
@@ -84,4 +153,24 @@ end
 get '/users/:id' do
   content_type :json
   sample_users.select { |u| u[:id].to_i == params[:id].to_i }.first.to_json
+end
+
+get '/campaigns/' do
+  content_type :json
+  sample_campaigns.to_json
+end
+
+get '/campaigns/:id' do
+  content_type :json
+  sample_campaigns.select { |c| c[:id].to_i == params[:id].to_i }.first.to_json
+end
+
+get '/media/' do
+  content_type :json
+  sample_media.first.to_json
+end
+
+get '/media/:id' do
+  content_type :json
+  sample_media.select { |m| m[:id].to_i == params[:id].to_i }.first.to_json
 end
