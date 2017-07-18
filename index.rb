@@ -31,7 +31,6 @@ sample_users = [
     email: "matt.parlane@destinyrescue.org",
     preferences: {
       tags: ["rescue", "aftercare"],
-      campaigns: [123, 234],
       notification_frequency: "<unsure>",
     },
     social: {
@@ -61,23 +60,11 @@ sample_users = [
   }
 ]
 
-sample_campaigns = [
-  {
-    id: 123,
-    name: "Double For May",
-  },
-  {
-    id: 234,
-    name: "Give the gift of freedom this Christmas",
-  },
-]
-
 sample_media = [
   {
     "id": 123,
     "type": "video",
     "date": "2017-03-10T00:00:00+0000",
-    "campaign_id": 123,
     "medium": 1,
     "title": {
       "en_US": "Title",
@@ -102,7 +89,6 @@ sample_media = [
     "id": 234,
     "type": "html",
     "date": "2017-03-10T00:00:00+0000",
-    "campaign_id": 234,
     "medium": 1,
     "title": {
       "en_US": "Title",
@@ -153,16 +139,6 @@ end
 get '/users/:id' do
   content_type :json
   sample_users.select { |u| u[:id].to_i == params[:id].to_i }.first.to_json
-end
-
-get '/campaigns/' do
-  content_type :json
-  sample_campaigns.to_json
-end
-
-get '/campaigns/:id' do
-  content_type :json
-  sample_campaigns.select { |c| c[:id].to_i == params[:id].to_i }.first.to_json
 end
 
 get '/media/' do
